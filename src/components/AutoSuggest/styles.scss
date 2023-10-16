@@ -1,0 +1,20 @@
+.autoSuggest-container {
+    width: 40%;
+    position: absolute;
+    top: calc(1em + 18px);
+
+    ul {
+        list-style: none;
+        cursor: pointer;
+        z-index: 2;
+
+        li {
+            border: 1px solid black;
+            padding: 8px 16px;
+
+            &:hover {
+                background-color: #015ccc7d;
+            }
+        }
+    }
+}

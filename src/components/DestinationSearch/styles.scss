@@ -1,0 +1,15 @@
+.destinationSearch-container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+
+  margin-bottom: 40px;
+
+  input {
+    width: 40%;
+    padding: 8px 16px;
+  }
+}
