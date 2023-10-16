@@ -224,17 +224,28 @@ const db: IDestination[] = [
 ];
 
 export const getDestinations = async (inputValue: string) => {
-  const res = new Promise((resolve) => {
-    setTimeout(() => {
-      const destinationResults = db
-        .filter(
-          (destination: IDestination) =>
-            inputValue &&
-            destination.name.toLowerCase().includes(inputValue.toLowerCase())
-        )
-        .slice(0, 5);
-      resolve(destinationResults);
-    }, 3000);
-  });
-  return res as Promise<IDestination[]>;
+    console.log('Fake-API: inputValue', inputValue)
+  try {
+    const destinationResults: IDestination[] = db
+      .filter(
+        (destination: IDestination) =>
+          inputValue &&
+          destination.name.toLowerCase().includes(inputValue.toLowerCase())
+      )
+      .slice(0, 5);
+
+    const res = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(destinationResults);
+      }, 3000);
+    });
+
+    if (destinationResults?.length === 0) {
+      return { message: "Error: incorrect input" };
+    }
+
+    return res as Promise<IDestination[]>;
+  } catch (err) {
+    return err as string;
+  }
 };

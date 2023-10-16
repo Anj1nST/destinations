@@ -8,3 +8,7 @@ export interface IDestination {
   latitude: number;
   longitude: number;
 }
+
+export interface IError {
+    message?: string;
+}
