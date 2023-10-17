@@ -55,5 +55,5 @@ jobs:
           pages: write
           id-token: write
         with:
-          # github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
