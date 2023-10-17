@@ -34,25 +34,38 @@ jobs:
           name: production-files
           path: ./build
 
+  # deploy:
+  #   name: Deploy
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: read
+  #     pages: write
+  #     id-token: write
+  #   if: github.ref == 'refs/heads/main'
+
+  #   steps:
+  #     - name: Downloading artifact
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: production-files
+  #         path: ./build
+
+  #     - name: Deploying to gh-pages
+  #       uses: peaceiris/actions-gh-pages@v3
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         publish_dir: ./build
   deploy:
-    name: Deploy
-    needs: build
+    name: Deploy GitHub Pages
     runs-on: ubuntu-latest
+    needs: publish
     permissions:
       contents: read
       pages: write
       id-token: write
-    if: github.ref == 'refs/heads/main'
-
     steps:
-      - name: Downloading artifact
-        uses: actions/download-artifact@v2
+      - name: Deploy GitHub Pages
+        uses: actions/deploy-pages@v1
         with:
-          name: production-files
-          path: ./build
-
-      - name: Deploying to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          emit_telemetry: false
