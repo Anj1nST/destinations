@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+### Description
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- To accomplish this task, I utilized create-react-app with the --template typescript to quickly set up the project. I removed all the default files and recreated them from scratch to eliminate any unnecessary elements.
 
-## Available Scripts
+- I organized all the components into a dedicated "components" folder for better organization. The "App" component is responsible for managing the state of multiple components. I found this sufficient, so I opted not to include state management libraries like Redux.
 
-In the project directory, you can run:
+- In the "utils" folder, you'll find essential functions, as well as a "fake-api.ts" file containing two functions that simulate server operations.
 
-### `npm start`
+- I also chose to use SCSS because it offers more convenience compared to regular CSS.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### The Task
 
-### `npm test`
+You are tasked with creating a React, TypeScript application for searching travel destinations. Users should be able to search for destinations and view details about them. Additionally, you will implement an algorithm to suggest nearby destinations based on the selected destination.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Requirements:
 
-### `npm run build`
+User Interface (UI):
+Create a React application with two main parts:
+Destination Search: Allow users to search for travel destinations by name (the data is provided).
+Destination Details: Display detailed information about the selected destination, including its name, description, and top 5 nearby destinations.
+Implement an asynchronous combobox for the destination search that fetches and displays matching destination names from a fake API.
+The fake API must only return the destination based on the user query, which means you cannot fetch all destinations at once.
+You can create a file called fake-api.ts and export the async functions as fake APIs. Please console.log the arguments of all fake API functions.
+Clicking on the nearby destinations should show the details of the selected destination and its nearby destinations.
+User Experience (UX):
+Implement error handling for API requests. When the user enters ‘fail’, the front end should mimic a backend error case and show an error message near Combobox.
+Add loading indicators during data fetching.
+The Combobox should be keyboard-accessible.
+Optional Bonus:
+Implement client-side caching.
+Debounce user input.
+Make use of modern accessible UI libraries.
+Deep link to the current state.
+Submission Guidelines:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Deploy the application and share the link.
+Make your repository publicly accessible and share the link.
+Include a README.md file that explains the design decisions and technology choices.
+Evaluation Criteria:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Candidates will be evaluated based on the following:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Code quality and organization.
+TypeScript usage and type safety.
+React component structure and state management.
+Error handling and user experience.
+API integration and data modeling.
+Algorithm implementation (destination recommendation).
+Complex component implementation (async combobox).
+Bonus features (if implemented).
