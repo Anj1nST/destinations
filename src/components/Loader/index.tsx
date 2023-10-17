@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
+
+import "./styles.scss";
 
 const Loader = () => {
-  return (
-    <div>Data is loading</div>
-  )
-}
+  return <div className="loader"></div>;
+};
 
-export default Loader
+export default Loader;

@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
 
 import "./styles.scss";
+import { IAutoSuggest } from "./types";
+
 import { debounce } from "../../utils/debounce";
-import { getDestinations } from "../../utils/fake-api";
+import { getDestinationsAPI } from "../../utils/fake-api";
 import { IDestination } from "../../types";
 import Loader from "../Loader";
 
-const AutoSuggest = ({
+const AutoSuggest: React.FC<IAutoSuggest> = ({
+  destinations,
+  setDestinations,
   inputValue,
   setInputValue,
   setSelectedDestination,
-  selectedDestination,
-}: {
-  inputValue: string;
-  setInputValue: React.Dispatch<string>;
-  setSelectedDestination: React.Dispatch<any>;
-  selectedDestination: IDestination | null;
+  setNearestDestinations,
 }) => {
-  const [destinations, setDestinations] = useState<IDestination[]>([]);
   const [autosuggestResults, setAutosuggestResults] = useState<IDestination[]>(
     []
   );
@@ -31,7 +29,9 @@ const AutoSuggest = ({
         setDataIsLoading(true);
 
         // @ts-ignore
-        const res: IDestination[] | IError = await getDestinations(inputValue);
+        const res: IDestination[] | IError = await getDestinationsAPI(
+          inputValue
+        );
 
         if (res.message) {
           setError(res.message);
@@ -45,7 +45,7 @@ const AutoSuggest = ({
       }
     };
     debounce(fetchData, 1000);
-  }, [inputValue]);
+  }, [setDestinations, inputValue]);
 
   const handleBlur = () => {
     setDestinations([]);
@@ -54,23 +54,29 @@ const AutoSuggest = ({
   const handleClick = (e: React.MouseEvent) => {
     setInputValue("");
     setAutosuggestResults([]);
+    setNearestDestinations([]);
     const targetElement = e.currentTarget as HTMLElement;
-    const selectedDestination = destinations.find(
-      (destination: IDestination) => destination.id === +targetElement.id
-    );
+    const selectedDestination =
+      destinations.find(
+        (destination: IDestination) => destination.id === +targetElement.id
+      ) || null;
     setSelectedDestination(selectedDestination);
   };
 
   if (dataIsLoading) {
     return (
-      <div className="autoSuggest-container">
+      <div className="autoSuggest-loader">
         <Loader />
       </div>
     );
   }
 
   if (error) {
-    return <h3>{error}</h3>;
+    return (
+      <div className="autoSuggest-error">
+        <h3>{error}</h3>
+      </div>
+    );
   }
 
   return (

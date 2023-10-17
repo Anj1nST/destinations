@@ -1,19 +1,18 @@
 import React from "react";
 
 import "./styles.scss";
-import AutoSuggest from "../AutoSuggest";
-import { IDestination } from "../../types";
+import { IDestinationSearch } from "./types";
 
-const DestinationSearch = ({
+import AutoSuggest from "../AutoSuggest";
+
+const DestinationSearch: React.FC<IDestinationSearch> = ({
   inputValue,
   setInputValue,
   setSelectedDestination,
   selectedDestination,
-}: {
-  inputValue: string;
-  setInputValue: React.Dispatch<string>;
-  setSelectedDestination: React.Dispatch<any>;
-  selectedDestination: IDestination | null;
+  destinations,
+  setDestinations,
+  setNearestDestinations
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -32,6 +31,9 @@ const DestinationSearch = ({
         setInputValue={setInputValue}
         setSelectedDestination={setSelectedDestination}
         selectedDestination={selectedDestination}
+        destinations={destinations}
+        setDestinations={setDestinations}
+        setNearestDestinations={setNearestDestinations}
       />
     </div>
   );

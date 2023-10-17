@@ -4,3 +4,23 @@
 
     width: 40%;
 }
+
+.destinationDetails-selectedDestination {
+    margin-bottom: 40px;
+}
+
+.destinationDetails-nearestListTitle {
+    margin-bottom: 8px;
+}
+
+.destinationDetails-nearestList {
+    li {
+        margin-bottom: 8px;
+    }
+}
+
+.destinationDetails-loader {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

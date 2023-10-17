@@ -1,4 +1,5 @@
 import { IDestination } from "../types";
+import { getNearestDestinations } from "./getNearestDestinations";
 
 const db: IDestination[] = [
   {
@@ -223,8 +224,8 @@ const db: IDestination[] = [
   },
 ];
 
-export const getDestinations = async (inputValue: string) => {
-    console.log('Fake-API: inputValue', inputValue)
+export const getDestinationsAPI = async (inputValue: string) => {
+  console.log("Fake-API: inputValue", inputValue);
   try {
     const destinationResults: IDestination[] = db
       .filter(
@@ -243,6 +244,26 @@ export const getDestinations = async (inputValue: string) => {
     if (destinationResults?.length === 0) {
       return { message: "Error: incorrect input" };
     }
+
+    return res as Promise<IDestination[]>;
+  } catch (err) {
+    return err as string;
+  }
+};
+
+export const getNearestDestinationsAPI = async (
+  selectedDestination: IDestination
+) => {
+  console.log("Fake-API: inputValue", selectedDestination);
+
+  try {
+    const nearestDestinations = getNearestDestinations(db, selectedDestination);
+
+    const res = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(nearestDestinations);
+      }, 3000);
+    });
 
     return res as Promise<IDestination[]>;
   } catch (err) {

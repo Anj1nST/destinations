@@ -7,6 +7,7 @@ export interface IDestination {
   currency: string;
   latitude: number;
   longitude: number;
+  distance?: number;
 }
 
 export interface IError {
