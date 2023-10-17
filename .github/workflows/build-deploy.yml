@@ -50,5 +50,5 @@ jobs:
       - name: Deploying to gh-pages
         uses: actions/deploy-pages@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
